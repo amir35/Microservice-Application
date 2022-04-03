@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.amir35.entity.Order;
 import com.amir35.service.OrderService;
+import com.amir35.transaction.Payment;
+import com.amir35.transaction.TransactionRequest;
+import com.amir35.transaction.TransactionResponse;
 
 @RestController
 @RequestMapping("/order")
@@ -18,11 +21,12 @@ public class OrderController {
 	private OrderService orderService;
 	
 	@PostMapping("/bookOrder")
-	public Order bookOrder(@RequestBody Order order)
+	public TransactionResponse bookOrder(@RequestBody TransactionRequest request)
 	{
 		
-		System.out.println(order);
-		return orderService.saveOrder(order);
+		
+		//System.out.println(order);
+		return orderService.saveOrder(request);
 	}
 
 }
