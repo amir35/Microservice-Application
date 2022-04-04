@@ -29,7 +29,7 @@ public class OrderService {
 		payment.setAmount(order.getPrice());
 		
 		//rest api call to payment microservice
-		Payment paymentResponse = template.postForObject("http://localhost:9091/payment/doPayment", payment, Payment.class);
+		Payment paymentResponse = template.postForObject("http://payment-service/payment/doPayment", payment, Payment.class);
 		
 		if(paymentResponse.getPaymentStatus().equals("success"))
 		{
